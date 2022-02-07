@@ -87,9 +87,9 @@ class MainWindow(QMainWindow):
         if self.indeksi >= len(self.tiedot):
             laatikko = QMessageBox(self)
             if self.pisteet == len(self.tiedot):
+                laatikko.setText(f"Sait kaikki oikein {self.kierros} kierroksella!")
                 self.kierros = 0
                 self.tiedot = lataa_kysymykset_netista()
-                laatikko.setText(f"Sait kaikki oikein!")
             else:
                 laatikko.setText(f"Sait {self.pisteet} pistettä. Kokeile uudelleen.")
             laatikko.exec()
