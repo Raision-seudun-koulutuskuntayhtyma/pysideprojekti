@@ -70,10 +70,13 @@ class MainWindow(QMainWindow):
             napin_vari = "rgb(255,0,0)"
  
         painettu_nappi.setStyleSheet("* {background: " + napin_vari + ";}")
-            QApplication.processEvents()
+        QApplication.processEvents()
         time.sleep(0.25)
-            painettu_nappi.setStyleSheet("")            
+        painettu_nappi.setStyleSheet("")
 
+        self.seuraava_kysymys()
+
+    def seuraava_kysymys(self):
         self.indeksi += 1
         if self.indeksi >= len(self.tiedot):
             laatikko = QMessageBox(self)
@@ -83,6 +86,15 @@ class MainWindow(QMainWindow):
             self.pisteet = 0
 
         self.vaihda_kysymys_ja_vastaukset(self.indeksi)
+
+    @property
+    def pisteet(self):
+        return self._pisteet
+
+    @pisteet.setter
+    def pisteet(self, arvo):
+        self._pisteet = arvo
+        self.ui.statusbar.showMessage(f"Pisteet: {self.pisteet}")
 
 
 if __name__ == "__main__":
