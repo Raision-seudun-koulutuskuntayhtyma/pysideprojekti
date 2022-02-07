@@ -61,15 +61,17 @@ class MainWindow(QMainWindow):
         else:
             return
 
+        painettu_nappi = self.sender()
+
         if nappi == self.oikea_vastaus:
-            print("Oikein!")
-            painettu_nappi = self.sender()
             self.pisteet += 1
-            painettu_nappi.setStyleSheet(
-                "QPushButton {background: rgb(0,255,0);}"
-            )
+            napin_vari = "rgb(0,255,0)"
+        else:
+            napin_vari = "rgb(255,0,0)"
+ 
+        painettu_nappi.setStyleSheet("* {background: " + napin_vari + ";}")
             QApplication.processEvents()
-            time.sleep(1)
+        time.sleep(0.25)
             painettu_nappi.setStyleSheet("")            
 
         self.indeksi += 1
