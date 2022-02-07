@@ -1,4 +1,6 @@
 import sys
+import time
+
 from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox
 
 from kysymykset import lataa_kysymykset_netista
@@ -60,7 +62,14 @@ class MainWindow(QMainWindow):
 
         if nappi == self.oikea_vastaus:
             print("Oikein!")
+            painettu_nappi = self.sender()
             self.pisteet += 1
+            painettu_nappi.setStyleSheet(
+                "QPushButton {background: rgb(0,255,0);}"
+            )
+            QApplication.processEvents()
+            time.sleep(1)
+            painettu_nappi.setStyleSheet("")            
 
         self.indeksi += 1
         if self.indeksi >= len(self.tiedot):
